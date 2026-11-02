@@ -15,3 +15,18 @@ Password: ftpp@ssword
 These credentials were later used to successfully authenticate to the FTP service running on the target machine.
 <img width="1920" height="923" alt="FTP Enumeration and Credential Discovery" src="https://github.com/user-attachments/assets/79cffa72-2fb2-449a-bf95-92e33f4bbd29" />
 Using the credentials obtained from the QR code analysis, a successful connection was established to the FTP service running on the target machine. After authentication, two files, information.txt and p_lists.txt, were discovered and downloaded. These files contained valuable information that was later used to identify the SSH username and password.
+<img width="1920" height="923" alt="list information" src="https://github.com/user-attachments/assets/f5b6a77e-3259-4dcd-b7b9-001e2f652128" />
+After downloading and examining the files from the FTP server, the file information.txt revealed the username robin and indicated that a password list had been provided due to weak password practices. The second file, p_lists.txt, contained multiple potential passwords. This information was later used during the credential attack phase to obtain valid SSH credentials for the target system.
+<img width="1920" height="923" alt="got the password" src="https://github.com/user-attachments/assets/cb1c06d2-234d-45af-a7ed-904d8213f067" />
+After identifying the username robin and obtaining a list of potential passwords from the FTP server, a password attack was performed against the SSH service using Hydra. The tool successfully identified the valid SSH credentials:
+
+Username: robin
+Password: k4rv3ndh4nh4ck3r
+
+These credentials provided initial access to the target system through the SSH service.
+<img width="1920" height="923" alt="successfull login robin" src="https://github.com/user-attachments/assets/47582248-77b8-40ff-a6d2-2789db0724e4" />
+Using the credentials obtained from the Hydra attack, an SSH connection was successfully established to the target machine. After authentication, access was gained as the user robin. Basic enumeration commands such as whoami, pwd, and ls -la were executed to identify accessible files and directories. Further privilege enumeration using sudo -l revealed that the user was allowed to execute the script feedback.sh without requiring a password, indicating a potential privilege escalation vector.
+<img width="1920" height="923" alt="successfull" src="https://github.com/user-attachments/assets/2cdf5c7d-18c8-41db-956c-1f8daf78bb30" />
+After gaining SSH access as the user robin, privilege escalation enumeration revealed that a script, feedback.sh, could be executed with elevated privileges. Further analysis of the environment showed that the user was a member of the docker group. This misconfiguration was exploited by launching a privileged Docker container and mounting the host filesystem. By chrooting into the mounted filesystem, root-level access to the target machine was obtained.
+
+Once root privileges were achieved, the root.txt file was accessed and the root flag was successfully retrieved, confirming full compromise of the target system.
