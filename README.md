@@ -1,4 +1,3 @@
-<img width="1920" height="923" alt="hidden text founded" src="https://github.com/user-attachments/assets/f76fef2d-7cd8-4c27-b640-8ad139d36426" />
 # Lab-week-3-vulnerabilty-analysis
 <img width="1920" height="923" alt="IP discovery" src="https://github.com/user-attachments/assets/dc28ee86-076d-4dc0-b9b1-ac4a6441e260" />
 To identify the target machine, an Nmap scan was performed using the -Pn option. The -Pn parameter instructs Nmap to skip host discovery and treat all hosts as online, which is useful when ICMP requests are blocked or filtered. During the scan, the host 192.168.0.141 was identified as the target machine because it exposed three significant services: FTP (21), SSH (22), and HTTP (80). The MAC address also indicated a VirtualBox virtual network adapter, confirming that it was the BlueMoon virtual machine
