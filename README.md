@@ -11,3 +11,5 @@ Username: userftp
 Password: ftpp@ssword
 
 These credentials were later used to successfully authenticate to the FTP service running on the target machine.
+<img width="1920" height="923" alt="FTP Enumeration and Credential Discovery" src="https://github.com/user-attachments/assets/79cffa72-2fb2-449a-bf95-92e33f4bbd29" />
+Using the credentials obtained from the QR code analysis, a successful connection was established to the FTP service running on the target machine. After authentication, two files, information.txt and p_lists.txt, were discovered and downloaded. These files contained valuable information that was later used to identify the SSH username and password.
